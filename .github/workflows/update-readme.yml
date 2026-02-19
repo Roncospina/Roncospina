@@ -1,25 +1,37 @@
-name: Update README Stats
+name: Generate Profile SVG
 
 on:
   schedule:
-    # Se ejecuta cada 12 horas
-    - cron: "0 */12 * * *"
-  workflow_dispatch: # También puedes ejecutarlo manualmente desde GitHub
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
-  update-readme:
-    name: Update GitHub Stats
+  generate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Update GitHub Readme Stats cache
-        # Simplemente hace un push vacío para refrescar las imágenes cacheadas
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate SVG
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python generate_svg.py
+
+      - name: Commit and push if changed
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
-          git commit --allow-empty -m "chore: refresh stats [skip ci]"
+          git add profile.svg
+          git diff --staged --quiet || git commit -m "chore: update profile SVG [skip ci]"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
