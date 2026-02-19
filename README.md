@@ -1,3 +1,3 @@
 <div align="center">
-  <img src="./profile.svg" alt="Manuel Ospina - GitHub Profile" />
+  <img src="https://raw.githubusercontent.com/Roncospina/Roncospina/main/profile.svg" alt="Manuel Ospina - GitHub Profile" />
 </div>
