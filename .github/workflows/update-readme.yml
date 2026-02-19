@@ -1,0 +1,25 @@
+name: Update README Stats
+
+on:
+  schedule:
+    # Se ejecuta cada 12 horas
+    - cron: "0 */12 * * *"
+  workflow_dispatch: # También puedes ejecutarlo manualmente desde GitHub
+
+jobs:
+  update-readme:
+    name: Update GitHub Stats
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update GitHub Readme Stats cache
+        # Simplemente hace un push vacío para refrescar las imágenes cacheadas
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git commit --allow-empty -m "chore: refresh stats [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
