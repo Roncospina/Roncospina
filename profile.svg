@@ -1,100 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="974" height="640" viewBox="0 0 974 640">
+<svg xmlns="http://www.w3.org/2000/svg" width="969" height="708" viewBox="0 0 969 708">
 <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#161b22"/><stop offset="100%" stop-color="#0d1117"/></linearGradient><linearGradient id="bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#58a6ff" stop-opacity="0.8"/><stop offset="100%" stop-color="#3fb950" stop-opacity="0.3"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<rect width="974" height="640" rx="14" fill="url(#bg)"/>
-<rect width="974" height="640" rx="14" fill="none" stroke="url(#bd)" stroke-width="1.5"/>
-<line x1="402" y1="24" x2="402" y2="616" stroke="#21262d" stroke-width="1"/>
-<text x="24" y="101.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                                                                       </text>
-<text x="24" y="111.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                                 ...:::...::...                        </text>
-<text x="24" y="120.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                            .::::::...:.........:::..                  </text>
-<text x="24" y="130.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                          .....:....:..............::::..              </text>
-<text x="24" y="139.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                        .:..........:........::.........:.             </text>
-<text x="24" y="149.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                     .:::..................::.............:..           </text>
-<text x="24" y="158.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                    .:.:...........:...........:.:::............        </text>
-<text x="24" y="168.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">                  :...:......::.:..............:::::....:::..:..::.    </text>
-<text x="24" y="177.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">                 ........:.........:.:::::::........:::...::.....:.    </text>
-<text x="24" y="187.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">               ..............:-::::::.:::::...  .........:::..:..:.   </text>
-<text x="24" y="196.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">               ..........::===-:=+*##*+==++=====-::::.:.....:....:::  </text>
-<text x="24" y="206.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">              ........::==-::::::::..:=##%%%%%%%###=-:....:.::....:.  </text>
-<text x="24" y="215.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">              .......:-====**##*+==::::::=#@%%%%##%%%#+---=-:.....::  </text>
-<text x="24" y="225.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">             ......:-=====*######%%#*==-=+#@%@@@@@%#%%%###*+:.....::  </text>
-<text x="24" y="234.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">            .....:::==+*####++=+*%%@%#*++*##%%%%%#=--=##%###+-:..::   </text>
-<text x="24" y="244.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">           ....::::==+#####+-:::::==#%****##%#####+=:::::-+*#*:::::   </text>
-<text x="24" y="253.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">         ..:...:.:-=+*###%%%%####%#####*###%%%%#####+==---:-*#=:..:   </text>
-<text x="24" y="263.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">        ..==-**:::==+*####%%%%%%%%######*##%%%##%##%%%%##+==-*=:::    </text>
-<text x="24" y="272.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">       ..=#*=-=-::-=+**###%%%%%%%%%####+*###%%##=-=*#%%%%##*+#=::.    </text>
-<text x="24" y="282.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">       ..##*#=:::-===+###%#%@@@@@%%###*+###%%%##%#:::-+###%#*#+::     </text>
-<text x="24" y="291.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">       ..#+#=.::-====*##%@@@@@@@@%#**#*##%%%%##%%%###*=-######=:.     </text>
-<text x="24" y="301.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">       ..:*+.:::-===+##%%%@@%@@%#-=+###*#%@@@%%%%%%%%%%%%%%%##=       </text>
-<text x="24" y="310.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">       ...+*-:::-==+*##%%@@@%%###=:=-...=##%%%%%%%%%%%%%%%%%%=        </text>
-<text x="24" y="320.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">       ...++#:.:-==+##%%@%%%####*######*+*+:.*%%@@@%@%%%%%%%#         </text>
-<text x="24" y="329.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">      .....--::::==+###%@###**#####%%%%%%%%#**##@@@@@@%%%%%%           </text>
-<text x="24" y="339.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">       .......:::-=+*#%@@%%#===*#####@%%%%%###%%@@@@@@%%%%%#           </text>
-<text x="24" y="348.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">        ......::::--=#%%@@@%#=:-=+++**#%@@@@%###%%#%@%%%##%%           </text>
-<text x="24" y="358.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">         .....:::::-+##%@@@####***#@@@%####%%%##%%%%%%%%%#%#           </text>
-<text x="24" y="367.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#58a6ff" opacity="1.00" xml:space="preserve">         ........::-+*##%%%####%#####%@@#%==#####%%@%%%%%##            </text>
-<text x="24" y="377.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">          ........:-=+*###%###%#%@%###%###=:-=#%%#%@%#%%#%             </text>
-<text x="24" y="386.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">          .........::-=+##%%%%%%##*##%@@@@@@@@@@@@@@@%%+-:             </text>
-<text x="24" y="396.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">           ..:::....:::-+##%#%###+=-*#%%@@@@@@@@@%####+=               </text>
-<text x="24" y="405.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">             :::::.....:=+#######+==+##%@@@@@@@@%#*#+==:               </text>
-<text x="24" y="415.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">             ::--:::...:::=+####*++####%@@@@%@@%#+=-::::               </text>
-<text x="24" y="424.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#79c0ff" opacity="0.85" xml:space="preserve">             ::---:::...::=+++++=**####%%%#%##%#=:::::                 </text>
-<text x="24" y="434.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">            :::---:::::...:-==+=+*###%####****+-:::::                  </text>
-<text x="24" y="443.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">           .::::---:::---::::::-===+*#*++=---:::::::                   </text>
-<text x="24" y="453.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">        ....:::--::-:--====:.:.::::::---::::::::::                     </text>
-<text x="24" y="462.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">      .....::::---:-:--========:.:...:::::::=###                       </text>
-<text x="24" y="472.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">   ........:::================++=====+++*#####*::...                   </text>
-<text x="24" y="481.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.60" xml:space="preserve">..........::::=+***+++*##%%%%%%%@%%%%%%%%%%%%#=...........             </text>
-<text x="24" y="491.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">............:-:-=+*###****##%@@@@%%%%%%%%@%%%%%*............:          </text>
-<text x="24" y="500.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">.............=:-=+*###########%%%%%%%%@%@%%%%%*:.................      </text>
-<text x="24" y="510.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">.............:--=+*########%%%%%%%%%%@@@@@%%%=............................</text>
-<text x="24" y="519.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">..............:-=+*#######%%%%%%%%%@@@@%%%%#-............................</text>
-<text x="24" y="529.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">................:=+*#####%%%%%%%%%%%%%%%%#:..............................</text>
-<text x="24" y="538.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">..................:-*####%%%%%%%%%%%%#+::................................</text>
-<text x="24" y="548.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#8b949e" opacity="0.30" xml:space="preserve">.......................::--=====-::......................................</text>
-<text x="414" y="42.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="17" font-weight="bold" fill="#ffffff" filter="url(#glow)">manuel@ospina</text>
-<text x="414" y="70.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
-<text x="414" y="90.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="11.5" fill="#a8d8ea" opacity="0.85" font-style="italic">Full-stack dev focused on scalable, clean architecture.</text>
-<text x="414" y="109.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="11.5" fill="#a8d8ea" opacity="0.85" font-style="italic">ERP &amp; financial systems — precision and performance first.</text>
-<text x="414" y="128.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="11.5" fill="#a8d8ea" opacity="0.85" font-style="italic">Open to full-time roles &amp; long-term collaborations.</text>
-<text x="414" y="158.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
-<text x="414" y="178.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Role:</text>
-<text x="458" y="178.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Full Stack Developer</text>
-<text x="414" y="198.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Location:</text>
-<text x="487" y="198.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Colombia</text>
-<text x="414" y="218.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">OS:</text>
-<text x="443" y="218.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Windows</text>
-<text x="414" y="238.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">IDE:</text>
-<text x="450" y="238.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">VS Code / WebStorm</text>
-<text x="414" y="258.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Focus:</text>
-<text x="465" y="258.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Scalable Web Apps</text>
-<text x="414" y="289.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.Frontend:</text>
-<text x="532" y="289.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">React, TypeScript, Tailwind, HTML, CSS</text>
-<text x="414" y="309.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.Backend:</text>
-<text x="524" y="309.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">NestJS, Node.js, Laravel</text>
-<text x="414" y="329.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.API:</text>
-<text x="495" y="329.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">GraphQL, Apollo, REST</text>
-<text x="414" y="349.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.Database:</text>
-<text x="532" y="349.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">PostgreSQL</text>
-<text x="414" y="380.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Hobbies.Software:</text>
-<text x="546" y="380.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Exploring scalable backend patterns, improving system design, and experimenting with new technologies.</text>
-<text x="414" y="400.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Hobbies.Other:</text>
-<text x="524" y="400.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Listening to music, playing football, boxing training, and competitive video games.</text>
-<text x="414" y="431.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#8b949e">&#x2500; Contact</text>
-<text x="414" y="449.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
-<text x="414" y="469.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">GitHub:</text>
-<text x="472" y="469.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">github.com/Roncospina</text>
-<text x="414" y="489.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Email:</text>
-<text x="465" y="489.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">manuel.ospina2004@gmail.com</text>
-<text x="414" y="520.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#8b949e">&#x2500; GitHub Stats</text>
-<text x="414" y="538.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
-<text x="414" y="558.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Repos: 10</text>
-<text x="654" y="558.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Stars: 0</text>
-<text x="414" y="578.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Commits: 42</text>
-<text x="654" y="578.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Followers: 4</text>
-<rect x="24" y="628" width="154" height="4" rx="2" fill="#58a6ff" opacity="0.75"/>
-<rect x="178" y="628" width="154" height="4" rx="2" fill="#3fb950" opacity="0.75"/>
-<rect x="332" y="628" width="154" height="4" rx="2" fill="#d29922" opacity="0.75"/>
-<rect x="486" y="628" width="154" height="4" rx="2" fill="#bc8cff" opacity="0.75"/>
-<rect x="640" y="628" width="154" height="4" rx="2" fill="#ff7b72" opacity="0.75"/>
-<rect x="794" y="628" width="154" height="4" rx="2" fill="#79c0ff" opacity="0.75"/>
+<rect width="969" height="708" rx="14" fill="url(#bg)"/>
+<rect width="969" height="708" rx="14" fill="none" stroke="url(#bd)" stroke-width="1.5"/>
+<line x1="397" y1="24" x2="397" y2="684" stroke="#21262d" stroke-width="1"/>
+<text x="24" y="135.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                                                                       </text>
+<text x="24" y="145.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                                 ...:::...::...                        </text>
+<text x="24" y="154.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                            .::::::...:.........:::..                  </text>
+<text x="24" y="164.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                          .....:....:..............::::..              </text>
+<text x="24" y="173.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                        .:..........:........::.........:.             </text>
+<text x="24" y="183.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                     .:::..................::.............:..           </text>
+<text x="24" y="192.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                    .:.:...........:...........:.:::............        </text>
+<text x="24" y="202.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                  :...:......::.:..............:::::....:::..:..::.    </text>
+<text x="24" y="211.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">                 ........:.........:.:::::::........:::...::.....:.    </text>
+<text x="24" y="221.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">               ..............:-::::::.:::::...  .........:::..:..:.   </text>
+<text x="24" y="230.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">               ..........::===-:=+*##*+==++=====-::::.:.....:....:::  </text>
+<text x="24" y="240.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">              ........::==-::::::::..:=##%%%%%%%###=-:....:.::....:.  </text>
+<text x="24" y="249.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">              .......:-====**##*+==::::::=#@%%%%##%%%#+---=-:.....::  </text>
+<text x="24" y="259.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">             ......:-=====*######%%#*==-=+#@%@@@@@%#%%%###*+:.....::  </text>
+<text x="24" y="268.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">            .....:::==+*####++=+*%%@%#*++*##%%%%%#=--=##%###+-:..::   </text>
+<text x="24" y="278.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">           ....::::==+#####+-:::::==#%****##%#####+=:::::-+*#*:::::   </text>
+<text x="24" y="287.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">         ..:...:.:-=+*###%%%%####%#####*###%%%%#####+==---:-*#=:..:   </text>
+<text x="24" y="297.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">        ..==-**:::==+*####%%%%%%%%######*##%%%##%##%%%%##+==-*=:::    </text>
+<text x="24" y="306.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       ..=#*=-=-::-=+**###%%%%%%%%%####+*###%%##=-=*#%%%%##*+#=::.    </text>
+<text x="24" y="316.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       ..##*#=:::-===+###%#%@@@@@%%###*+###%%%##%#:::-+###%#*#+::     </text>
+<text x="24" y="325.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       ..#+#=.::-====*##%@@@@@@@@%#**#*##%%%%##%%%###*=-######=:.     </text>
+<text x="24" y="335.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       ..:*+.:::-===+##%%%@@%@@%#-=+###*#%@@@%%%%%%%%%%%%%%%##=       </text>
+<text x="24" y="344.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       ...+*-:::-==+*##%%@@@%%###=:=-...=##%%%%%%%%%%%%%%%%%%=        </text>
+<text x="24" y="354.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       ...++#:.:-==+##%%@%%%####*######*+*+:.*%%@@@%@%%%%%%%#         </text>
+<text x="24" y="363.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">      .....--::::==+###%@###**#####%%%%%%%%#**##@@@@@@%%%%%%           </text>
+<text x="24" y="373.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">       .......:::-=+*#%@@%%#===*#####@%%%%%###%%@@@@@@%%%%%#           </text>
+<text x="24" y="382.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">        ......::::--=#%%@@@%#=:-=+++**#%@@@@%###%%#%@%%%##%%           </text>
+<text x="24" y="392.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">         .....:::::-+##%@@@####***#@@@%####%%%##%%%%%%%%%#%#           </text>
+<text x="24" y="401.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">         ........::-+*##%%%####%#####%@@#%==#####%%@%%%%%##            </text>
+<text x="24" y="411.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">          ........:-=+*###%###%#%@%###%###=:-=#%%#%@%#%%#%             </text>
+<text x="24" y="420.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">          .........::-=+##%%%%%%##*##%@@@@@@@@@@@@@@@%%+-:             </text>
+<text x="24" y="430.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">           ..:::....:::-+##%#%###+=-*#%%@@@@@@@@@%####+=               </text>
+<text x="24" y="439.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">             :::::.....:=+#######+==+##%@@@@@@@@%#*#+==:               </text>
+<text x="24" y="449.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">             ::--:::...:::=+####*++####%@@@@%@@%#+=-::::               </text>
+<text x="24" y="458.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">             ::---:::...::=+++++=**####%%%#%##%#=:::::                 </text>
+<text x="24" y="468.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">            :::---:::::...:-==+=+*###%####****+-:::::                  </text>
+<text x="24" y="477.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">           .::::---:::---::::::-===+*#*++=---:::::::                   </text>
+<text x="24" y="487.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">        ....:::--::-:--====:.:.::::::---::::::::::                     </text>
+<text x="24" y="496.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">      .....::::---:-:--========:.:...:::::::=###                       </text>
+<text x="24" y="506.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">   ........:::================++=====+++*#####*::...                   </text>
+<text x="24" y="515.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">..........::::=+***+++*##%%%%%%%@%%%%%%%%%%%%#=...........             </text>
+<text x="24" y="525.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">............:-:-=+*###****##%@@@@%%%%%%%%@%%%%%*............:          </text>
+<text x="24" y="534.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">.............=:-=+*###########%%%%%%%%@%@%%%%%*:................       </text>
+<text x="24" y="544.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">.............:--=+*########%%%%%%%%%%@@@@@%%%=......................    </text>
+<text x="24" y="553.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">..............:-=+*#######%%%%%%%%%@@@@%%%%#-.......................    </text>
+<text x="24" y="563.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">................:=+*#####%%%%%%%%%%%%%%%%#:..............................</text>
+<text x="24" y="572.5" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">..................:-*####%%%%%%%%%%%%#+::................................</text>
+<text x="24" y="582.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="7.2" fill="#3d6b8f" xml:space="preserve">.......................::--=====-::......................................</text>
+<text x="409" y="42.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="17" font-weight="bold" fill="#ffffff" filter="url(#glow)">manuel@ospina</text>
+<text x="409" y="70.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
+<text x="409" y="90.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="11.5" fill="#a8d8ea" opacity="0.85" font-style="italic">Full-stack dev focused on scalable, clean architecture.</text>
+<text x="409" y="109.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="11.5" fill="#a8d8ea" opacity="0.85" font-style="italic">ERP &amp; financial systems — precision and performance first.</text>
+<text x="409" y="128.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="11.5" fill="#a8d8ea" opacity="0.85" font-style="italic">Open to full-time roles &amp; long-term collaborations.</text>
+<text x="409" y="158.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
+<text x="409" y="178.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Role:</text>
+<text x="453" y="178.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Full Stack Developer</text>
+<text x="409" y="198.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Location:</text>
+<text x="482" y="198.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Colombia</text>
+<text x="409" y="218.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">OS:</text>
+<text x="438" y="218.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Windows</text>
+<text x="409" y="238.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">IDE:</text>
+<text x="445" y="238.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">VS Code / WebStorm</text>
+<text x="409" y="258.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Focus:</text>
+<text x="460" y="258.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Scalable Web Apps</text>
+<text x="409" y="289.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.Frontend:</text>
+<text x="527" y="289.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">React, TypeScript, Tailwind, HTML, CSS</text>
+<text x="409" y="309.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.Backend:</text>
+<text x="519" y="309.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">NestJS, Node.js, Laravel</text>
+<text x="409" y="329.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.API:</text>
+<text x="490" y="329.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">GraphQL, Apollo, REST</text>
+<text x="409" y="349.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Stack.Database:</text>
+<text x="527" y="349.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">PostgreSQL</text>
+<text x="409" y="380.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Hobbies.Software:</text>
+<text x="541" y="380.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Exploring scalable backend patterns,</text>
+<text x="423" y="400.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9" opacity="0.8">  improving system design &amp; new tech.</text>
+<text x="409" y="418.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Hobbies.Other:</text>
+<text x="519" y="418.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">Music, football, boxing training,</text>
+<text x="423" y="438.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9" opacity="0.8">  and competitive video games.</text>
+<text x="409" y="467.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#8b949e">&#x2500; Contact</text>
+<text x="409" y="485.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
+<text x="409" y="505.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">GitHub:</text>
+<text x="467" y="505.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">github.com/Roncospina</text>
+<text x="409" y="525.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#58a6ff">Email:</text>
+<text x="460" y="525.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#c9d1d9">manuel.ospina2004@gmail.com</text>
+<text x="409" y="556.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#8b949e">&#x2500; GitHub Stats</text>
+<text x="409" y="574.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#21262d">────────────────────────────────────────</text>
+<text x="409" y="594.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Repos: 10</text>
+<text x="649" y="594.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Stars: 0</text>
+<text x="409" y="614.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Commits: 43</text>
+<text x="649" y="614.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Followers: 4</text>
+<text x="409" y="634.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Lines of Code: 20,696  (</text>
+<text x="598" y="634.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">+21,823</text>
+<text x="658" y="634.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#f85149">-1,127</text>
+<text x="711" y="634.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">)</text>
+<rect x="24" y="696" width="153" height="4" rx="2" fill="#58a6ff" opacity="0.75"/>
+<rect x="177" y="696" width="153" height="4" rx="2" fill="#3fb950" opacity="0.75"/>
+<rect x="330" y="696" width="153" height="4" rx="2" fill="#d29922" opacity="0.75"/>
+<rect x="483" y="696" width="153" height="4" rx="2" fill="#bc8cff" opacity="0.75"/>
+<rect x="636" y="696" width="153" height="4" rx="2" fill="#ff7b72" opacity="0.75"/>
+<rect x="789" y="696" width="153" height="4" rx="2" fill="#79c0ff" opacity="0.75"/>
 </svg>
