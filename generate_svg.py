@@ -1,5 +1,6 @@
 import requests
 import os
+import xml.etree.ElementTree as ET
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 USERNAME = "Roncospina"
@@ -13,11 +14,14 @@ FOCUS     = "Scalable Web Apps"
 CONTACT = [
     ("GitHub",    f"github.com/{USERNAME}"),
     ("Email",     "manuel.ospina2004@gmail.com"),
+    # ("LinkedIn",  "# tu-linkedin"),
 ]
 
 HOBBIES = [
-    ("Hobbies.Software", "Exploring scalable backend patterns, improving system design, and experimenting with new technologies."),
-    ("Hobbies.Other", "Listening to music, playing football, boxing training, and competitive video games."),
+    ("Hobbies.Software", "Exploring scalable backend patterns,"),
+    ("",                 "  improving system design & new tech."),
+    ("Hobbies.Other",    "Music, football, boxing training,"),
+    ("",                 "  and competitive video games."),
 ]
 
 STACK = {
@@ -47,19 +51,67 @@ def fetch_github_stats(username, token=None):
         repos_data = requests.get(
             f"{base}/users/{username}/repos?per_page=100&type=owner", headers=headers, timeout=10
         ).json()
-        stars = sum(r.get("stargazers_count", 0) for r in repos_data if isinstance(r, dict))
+
+        stars       = sum(r.get("stargazers_count", 0) for r in repos_data if isinstance(r, dict))
         public_repos = user.get("public_repos", 0)
-        followers = user.get("followers", 0)
+        followers   = user.get("followers", 0)
+
+        # Commits via search API
         commits_resp = requests.get(
             f"{base}/search/commits?q=author:{username}&per_page=1",
             headers={**headers, "Accept": "application/vnd.github.cloak-preview"},
             timeout=10,
         ).json()
         commits = commits_resp.get("total_count", 0)
-        return {"repos": public_repos, "stars": stars, "commits": commits, "followers": followers}
+
+        # Líneas de código: recorre repos y suma stats de contributors
+        lines_added   = 0
+        lines_deleted = 0
+        for repo in repos_data:
+            if not isinstance(repo, dict):
+                continue
+            repo_name = repo.get("full_name", "")
+            if not repo_name:
+                continue
+            # contributor stats incluye additions/deletions por semana
+            stats_url = f"{base}/repos/{repo_name}/stats/contributors"
+            r = requests.get(stats_url, headers=headers, timeout=15)
+            if r.status_code == 202:
+                # GitHub está calculando, retry una vez
+                import time; time.sleep(3)
+                r = requests.get(stats_url, headers=headers, timeout=15)
+            if r.status_code != 200:
+                continue
+            contributors = r.json()
+            if not isinstance(contributors, list):
+                continue
+            for contributor in contributors:
+                if not isinstance(contributor, dict):
+                    continue
+                author = contributor.get("author", {})
+                if author and author.get("login", "").lower() == username.lower():
+                    for week in contributor.get("weeks", []):
+                        lines_added   += week.get("a", 0)
+                        lines_deleted += week.get("d", 0)
+
+        return {
+            "repos":         public_repos,
+            "stars":         stars,
+            "commits":       commits,
+            "followers":     followers,
+            "lines_added":   lines_added,
+            "lines_deleted": lines_deleted,
+            "lines_total":   lines_added - lines_deleted,
+        }
     except Exception as e:
         print(f"Stats error: {e}")
-        return {"repos": 0, "stars": 0, "commits": 0, "followers": 0}
+        return {"repos": 0, "stars": 0, "commits": 0, "followers": 0,
+                "lines_added": 0, "lines_deleted": 0, "lines_total": 0}
+
+
+def fmt(n):
+    """Formato legible: 1,234,567"""
+    return f"{n:,}"
 
 
 def make_svg(stats):
@@ -106,9 +158,9 @@ def make_svg(stats):
         "   ........:::================++=====+++*#####*::...                   ",
         "..........::::=+***+++*##%%%%%%%@%%%%%%%%%%%%#=...........             ",
         "............:-:-=+*###****##%@@@@%%%%%%%%@%%%%%*............:          ",
-        ".............=:-=+*###########%%%%%%%%@%@%%%%%*:.................      ",
-        ".............:--=+*########%%%%%%%%%%@@@@@%%%=............................",
-        "..............:-=+*#######%%%%%%%%%@@@@%%%%#-............................",
+        ".............=:-=+*###########%%%%%%%%@%@%%%%%*:................       ",
+        ".............:--=+*########%%%%%%%%%%@@@@@%%%=......................    ",
+        "..............:-=+*#######%%%%%%%%%@@@@%%%%#-.......................    ",
         "................:=+*#####%%%%%%%%%%%%%%%%#:..............................",
         "..................:-*####%%%%%%%%%%%%#+::................................",
         ".......................::--=====-::......................................",
@@ -116,6 +168,10 @@ def make_svg(stats):
     ascii_lines = [esc(l) for l in ascii_raw]
 
     # ── Info panel ────────────────────────────────────────────────────────────
+    la = stats['lines_added']
+    ld = stats['lines_deleted']
+    lt = stats['lines_total']
+
     info_lines = []
     info_lines.append(("header",    "manuel@ospina"))
     info_lines.append(("separator", "─" * 40))
@@ -133,7 +189,10 @@ def make_svg(stats):
         info_lines.append(("kv", (f"Stack.{cat}", esc(techs))))
     info_lines.append(("blank", ""))
     for label, value in HOBBIES:
-        info_lines.append(("kv", (esc(label), esc(value))))
+        if label == "":
+            info_lines.append(("continuation", esc(value)))
+        else:
+            info_lines.append(("kv", (esc(label), esc(value))))
     info_lines.append(("blank", ""))
     info_lines.append(("section",   "Contact"))
     info_lines.append(("separator", "─" * 40))
@@ -142,10 +201,16 @@ def make_svg(stats):
     info_lines.append(("blank", ""))
     info_lines.append(("section",   "GitHub Stats"))
     info_lines.append(("separator", "─" * 40))
-    info_lines.append(("stat", (f"Repos: {stats['repos']}", f"Stars: {stats['stars']}")))
-    info_lines.append(("stat", (f"Commits: {stats['commits']:,}", f"Followers: {stats['followers']}")))
+    info_lines.append(("stat2", (f"Repos: {fmt(stats['repos'])}", f"Stars: {fmt(stats['stars'])}")))
+    info_lines.append(("stat2", (f"Commits: {fmt(stats['commits'])}", f"Followers: {fmt(stats['followers'])}")))
+    # Líneas de código — igual que Andrew: total (añadidas, eliminadas)
+    info_lines.append(("lines", (
+        f"Lines of Code: {fmt(lt)}",
+        f"+{fmt(la)}",
+        f"-{fmt(ld)}",
+    )))
 
-    # ── Dimensiones dinámicas ─────────────────────────────────────────────────
+    # ── Dimensiones ───────────────────────────────────────────────────────────
     ASCII_FONT   = 7.2
     ASCII_LINE_H = 9.5
     INFO_FONT    = 12.5
@@ -157,21 +222,22 @@ def make_svg(stats):
     info_h = 0.0
     for item in info_lines:
         k = item[0]
-        if k == "blank":       info_h += INFO_LINE_H * 0.55
-        elif k == "header":    info_h += INFO_LINE_H * 1.4
-        elif k == "section":   info_h += INFO_LINE_H * 0.9
-        elif k == "about":     info_h += INFO_LINE_H * 0.95
-        else:                  info_h += INFO_LINE_H
+        if k == "blank":          info_h += INFO_LINE_H * 0.55
+        elif k == "header":       info_h += INFO_LINE_H * 1.4
+        elif k == "section":      info_h += INFO_LINE_H * 0.9
+        elif k == "about":        info_h += INFO_LINE_H * 0.95
+        elif k == "continuation": info_h += INFO_LINE_H * 0.9
+        else:                     info_h += INFO_LINE_H
 
-    PAD    = 24
-    # El ASCII es muy ancho (~73 chars × 4.3px ≈ 314px) más padding
-    ASCII_COL_W = 390
+    PAD         = 24
+    ASCII_COL_W = 385
     INFO_X      = ASCII_COL_W + PAD
     DIVIDER     = ASCII_COL_W + PAD // 2
     W           = INFO_X + 560
-    H           = int(max(ASCII_H, info_h) + PAD * 3.5)
+    H           = int(max(ASCII_H, info_h) + PAD * 4)
 
     MONO        = "JetBrains Mono, Fira Code, Consolas, monospace"
+    ASCII_COLOR = "#3d6b8f"
 
     BG          = "#0d1117"
     BORDER      = "#21262d"
@@ -182,10 +248,10 @@ def make_svg(stats):
     TEXT_ABOUT  = "#a8d8ea"
     GREEN       = "#3fb950"
     ORANGE      = "#d29922"
+    RED         = "#f85149"
 
     p = []
 
-    # defs
     p.append(
         f'<defs>'
         f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">'
@@ -207,28 +273,17 @@ def make_svg(stats):
     p.append(f'<rect width="{W}" height="{H}" rx="14" fill="none" stroke="url(#bd)" stroke-width="1.5"/>')
     p.append(f'<line x1="{DIVIDER}" y1="{PAD}" x2="{DIVIDER}" y2="{H-PAD}" stroke="{BORDER}" stroke-width="1"/>')
 
-    # ── ASCII (centrado verticalmente) ────────────────────────────────────────
+    # ASCII
     ascii_y0 = (H - ASCII_H) / 2.0 + ASCII_LINE_H
     for i, line in enumerate(ascii_lines):
-        y    = ascii_y0 + i * ASCII_LINE_H
-        mid  = n_ascii / 2.0
-        dist = abs(i - mid) / mid
-        # color degradado: centro brillante, extremos apagados
-        if dist < 0.2:
-            fill, op = ACCENT, 1.0
-        elif dist < 0.45:
-            fill, op = "#79c0ff", 0.85
-        elif dist < 0.70:
-            fill, op = TEXT_DIM, 0.6
-        else:
-            fill, op = TEXT_DIM, 0.3
+        y = ascii_y0 + i * ASCII_LINE_H
         p.append(
             f'<text x="{PAD}" y="{y:.1f}" font-family="{MONO}" '
-            f'font-size="{ASCII_FONT}" fill="{fill}" opacity="{op:.2f}" '
+            f'font-size="{ASCII_FONT}" fill="{ASCII_COLOR}" '
             f'xml:space="preserve">{line}</text>'
         )
 
-    # ── Info panel ────────────────────────────────────────────────────────────
+    # Info
     y = float(PAD) + 18.0
     for item in info_lines:
         k = item[0]
@@ -237,72 +292,77 @@ def make_svg(stats):
             y += INFO_LINE_H * 0.55
 
         elif k == "header":
-            p.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="17" '
-                f'font-weight="bold" fill="{TEXT_BRIGHT}" filter="url(#glow)">{item[1]}</text>'
-            )
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="17" '
+                     f'font-weight="bold" fill="{TEXT_BRIGHT}" filter="url(#glow)">{item[1]}</text>')
             y += INFO_LINE_H * 1.4
 
         elif k == "separator":
-            p.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{BORDER}">{item[1]}</text>'
-            )
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{BORDER}">{item[1]}</text>')
             y += INFO_LINE_H
 
         elif k == "section":
-            p.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{TEXT_DIM}">&#x2500; {item[1]}</text>'
-            )
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{TEXT_DIM}">&#x2500; {item[1]}</text>')
             y += INFO_LINE_H * 0.9
 
         elif k == "about":
-            p.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="11.5" '
-                f'fill="{TEXT_ABOUT}" opacity="0.85" font-style="italic">{item[1]}</text>'
-            )
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="11.5" '
+                     f'fill="{TEXT_ABOUT}" opacity="0.85" font-style="italic">{item[1]}</text>')
             y += INFO_LINE_H * 0.95
+
+        elif k == "continuation":
+            p.append(f'<text x="{INFO_X + 14}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{TEXT_MAIN}" opacity="0.8">{item[1]}</text>')
+            y += INFO_LINE_H * 0.9
 
         elif k == "kv":
             label, value = item[1]
-            p.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{ACCENT}">{label}:</text>'
-            )
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{ACCENT}">{label}:</text>')
             lw = len(label) * 7.4 + 14
-            p.append(
-                f'<text x="{INFO_X + lw:.0f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{TEXT_MAIN}">{value}</text>'
-            )
+            p.append(f'<text x="{INFO_X + lw:.0f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{TEXT_MAIN}">{value}</text>')
             y += INFO_LINE_H
 
-        elif k == "stat":
+        elif k == "stat2":
             left, right = item[1]
-            p.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{GREEN}">{left}</text>'
-            )
-            p.append(
-                f'<text x="{INFO_X + 240}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{GREEN}">{right}</text>'
-            )
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{GREEN}">{left}</text>')
+            p.append(f'<text x="{INFO_X + 240}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{GREEN}">{right}</text>')
             y += INFO_LINE_H
 
-    # ── Barra decorativa ──────────────────────────────────────────────────────
+        elif k == "lines":
+            # "Lines of Code: 12,345 ( +11,111  -1,234 )"
+            total_txt, added_txt, deleted_txt = item[1]
+            # texto base
+            p.append(f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{GREEN}">{total_txt}  (</text>')
+            base_w = len(total_txt) * 7.4 + 14 + 20   # aprox ancho del texto base
+            # +añadidas en verde
+            p.append(f'<text x="{INFO_X + base_w:.0f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{GREEN}">{added_txt}</text>')
+            add_w = len(added_txt) * 7.4 + 8
+            # -eliminadas en rojo
+            p.append(f'<text x="{INFO_X + base_w + add_w:.0f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{RED}">{deleted_txt}</text>')
+            del_w = len(deleted_txt) * 7.4 + 8
+            # cierre
+            p.append(f'<text x="{INFO_X + base_w + add_w + del_w:.0f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                     f'fill="{GREEN}">)</text>')
+            y += INFO_LINE_H
+
+    # Barra decorativa
     palette = [ACCENT, GREEN, ORANGE, "#bc8cff", "#ff7b72", "#79c0ff"]
     bw = (W - PAD * 2) // len(palette)
     by = H - 12
     for i, c in enumerate(palette):
-        p.append(
-            f'<rect x="{PAD + i*bw}" y="{by}" width="{bw}" height="4" '
-            f'rx="2" fill="{c}" opacity="0.75"/>'
-        )
+        p.append(f'<rect x="{PAD + i*bw}" y="{by}" width="{bw}" height="4" rx="2" fill="{c}" opacity="0.75"/>')
 
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">\n'
-        + "\n".join(p)
-        + "\n</svg>"
+        + "\n".join(p) + "\n</svg>"
     )
 
 
@@ -311,17 +371,12 @@ if __name__ == "__main__":
     print("Fetching GitHub stats...")
     stats = fetch_github_stats(USERNAME, token)
     print(f"Stats: {stats}")
-
     svg = make_svg(stats)
-
-    # Validar XML
-    import xml.etree.ElementTree as ET
     try:
         ET.fromstring(svg)
         print("XML valido")
     except ET.ParseError as e:
         print(f"XML ERROR: {e}")
-
     with open("profile.svg", "w", encoding="utf-8") as f:
         f.write(svg)
     print(f"Listo: profile.svg ({len(svg):,} bytes)")
