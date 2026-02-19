@@ -3,20 +3,16 @@ import os
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 USERNAME = "Roncospina"
-NAME     = "Manuel Ospina"
-ROLE     = "Full Stack Developer"
 
 LOCATION  = "Colombia"
 OS_INFO   = "Windows"
 IDE_INFO  = "VS Code / WebStorm"
+ROLE      = "Full Stack Developer"
 FOCUS     = "Scalable Web Apps"
 
 CONTACT = [
     ("GitHub",    f"github.com/{USERNAME}"),
     ("Email",     "manuel.ospina2004@gmail.com"),
-    # ("LinkedIn",  "# tu-linkedin"),
-    # ("Twitter", "# tu-twitter"),
-    # ("Discord",  "# tu-discord"),
 ]
 
 HOBBIES = [
@@ -31,7 +27,6 @@ STACK = {
     "Database":  "PostgreSQL",
 }
 
-# About — 3 líneas cortas que se muestran bajo el header
 ABOUT = [
     "Full-stack dev focused on scalable, clean architecture.",
     "ERP & financial systems — precision and performance first.",
@@ -40,125 +35,146 @@ ABOUT = [
 # ──────────────────────────────────────────────────────────────────────────────
 
 
+def esc(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
 def fetch_github_stats(username, token=None):
     headers = {"Authorization": f"token {token}"} if token else {}
     base = "https://api.github.com"
-    user = requests.get(f"{base}/users/{username}", headers=headers).json()
-    repos_data = requests.get(
-        f"{base}/users/{username}/repos?per_page=100&type=owner", headers=headers
-    ).json()
-    stars = sum(r.get("stargazers_count", 0) for r in repos_data if isinstance(r, dict))
-    public_repos = user.get("public_repos", 0)
-    followers = user.get("followers", 0)
-    commits_resp = requests.get(
-        f"{base}/search/commits?q=author:{username}&per_page=1",
-        headers={**headers, "Accept": "application/vnd.github.cloak-preview"},
-    ).json()
-    commits = commits_resp.get("total_count", 0)
-    return {"repos": public_repos, "stars": stars, "commits": commits, "followers": followers}
+    try:
+        user = requests.get(f"{base}/users/{username}", headers=headers, timeout=10).json()
+        repos_data = requests.get(
+            f"{base}/users/{username}/repos?per_page=100&type=owner", headers=headers, timeout=10
+        ).json()
+        stars = sum(r.get("stargazers_count", 0) for r in repos_data if isinstance(r, dict))
+        public_repos = user.get("public_repos", 0)
+        followers = user.get("followers", 0)
+        commits_resp = requests.get(
+            f"{base}/search/commits?q=author:{username}&per_page=1",
+            headers={**headers, "Accept": "application/vnd.github.cloak-preview"},
+            timeout=10,
+        ).json()
+        commits = commits_resp.get("total_count", 0)
+        return {"repos": public_repos, "stars": stars, "commits": commits, "followers": followers}
+    except Exception as e:
+        print(f"Stats error: {e}")
+        return {"repos": 0, "stars": 0, "commits": 0, "followers": 0}
 
 
 def make_svg(stats):
-    ascii_lines = [
-        r"xxxxxxxxxxxxxxxxXXXXXXXXXXXXXXXXXXX$XXXXXXXXXXXXXXXXXXX",
-        r"xxxxxXxxXXXXXXXXXXXXXXXXXXX$X$$$$$$$$$$$$$$$$$$$$$XXXXX",
-        r"XXXXXXXXXXXXXXXXXXXXXXX$X$$X$$$$$$$$$$$$$$$$$$$$$$$$$$$",
-        r"XXXXXXXXXXXXXXXXXXX$$X$X$Xxxx;;.;++xX$$$$$$$$$$$$$$$$$$",
-        r"XXXXXXXXXXXXXX$$$$XXXX+;:.............:;+xX$$$$$$$$$$$$",
-        r"XXXXXXXXX$$$$$$$$$$$x......................:x$$$$$$$$$$",
-        r"XXX$$$$$$$$$$$$$$$:..........................;xX$$$$$$$",
-        r"$X$$$$$$$$$$$$$$;...............................:+X$$$$",
-        r"$$$$$$$$$$$$$$X.......................:............;$$$",
-        r"$$$$$$$$$$$$$x..........;:;:::::::.................;X$$",
-        r"$$$$$$$$$$$$x.......;+;...;;xX$$$$$XXx+::..........;$$$",
-        r"$$$$$$$$$X+:......;;;;+xx+;:...:x$$$$$$$$x;::;;.....X$$",
-        r"$$$$$$$x;::.....:;;;+xXXX$$$Xx+;x$$$&$&$$$$$Xx+.....X$$",
-        r"$$$$$x;:::......;+xXXXx;:;+$$$xxxX$$$$X+;:;xXxx+:..;$$$",
-        r"$$$x;::::......;+xX$$$$XxxxXxXXxxX$$$$XXx;::::;x;..x$$$",
-        r"$$X;:::..;;xx.:;+xX$$$$$$$$$$XXxx$$$$$$$$$$$xx+x+:;$$$$",
-        r"$Xx;:::.;$x;;::;+xxX$$$$$$$$$XxxX$$$$$;.;x$$$$XX+:x$$$$",
-        r"$x;:::..xXx;.:;;;x$$$$$&&&$$xxxX$$$$$$$$xx:+$$XX+;$$$$$",
-        r"x;::::..:x+.::;;+x$$$&$$$$x+xxxX$&&$$$$$$$$$$$$Xx$$$$$$",
-        r";::::....x+;.:;+xX$$$&$$xXxx;::;xX$$$$$$$$$$$$$X$$$$$$$",
-        r":::::....:;:.:;+x$$$$$XxxXX$$$$$$$X+X$&&&$$$$$$$$$$$$$$",
-        r"::...........:;;xX$$$$x;+xXX$$$$$$$$$$$$&&$$$$$$$$$$$$$",
-        r":..............:;x$$&&$X+;x$xxx$$$$$$$$$$$$$$$$$$$$$$$$",
-        r"................;x$$$$$$$$Xx$$&&$xX$$$$$$$$$$$$$$$$$$$$",
-        r"................;+xX$$$$$$$$$$$$Xx;+X$$$$$$$$$$$$$$$$$$",
-        r".................:;xX$$$$$Xxx$$&&$&&$$$$$$$+X$$$$$$$$$$",
-        r"............;:.....;xX$$$$x;;x$$$$$&&$$XXx+x$$$$$$$$$$$",
-        r"...........::;;:....:+xXXXx+XX$$$&$$$$X+:;x$$$$$$$$$$$$",
-        r"...........::;;;:....:+x++xxX$$$$$$$$x;.:x$$$$$$$$$$$$$",
-        r"...........:;;;;;:;:.::;;+xxxXXXx+;;:...X$$$$$$$&$$$$$$",
-        r"...........:;;;:;;;;;;.....:;;;;;:..:;x$$$$$$$$$$$$$$$$",
-        r"...........:;;;;;;;;+++++;....::;;+XX$$$$$$&&&&$$$$$$$$",
-        r"...........:+xxx++xXXXxxxX$X$$$$$$$$x....;xx$$$&$&$$$$$",
-        r".........:;:+xXXxxxX$$$&$$$$$$$$$$$X.........X&$$$&$$$$",
-        r"..........;;+xXXXXX$$$$$$$$$$$$$$$$;............+x+;;:;",
-        r"...........;+xxX$$$$$$$$$$$$$$$$$x.....................",
-        r"............;xxX$$$$$$$$$$$$$$$X.......................",
-        r"..............:;xX$$$$$$$$$x+:.........................",
+    ascii_raw = [
+        "                                                                       ",
+        "                                 ...:::...::...                        ",
+        "                            .::::::...:.........:::..                  ",
+        "                          .....:....:..............::::..              ",
+        "                        .:..........:........::.........:.             ",
+        "                     .:::..................::.............:..           ",
+        "                    .:.:...........:...........:.:::............        ",
+        "                  :...:......::.:..............:::::....:::..:..::.    ",
+        "                 ........:.........:.:::::::........:::...::.....:.    ",
+        "               ..............:-::::::.:::::...  .........:::..:..:.   ",
+        "               ..........::===-:=+*##*+==++=====-::::.:.....:....:::  ",
+        "              ........::==-::::::::..:=##%%%%%%%###=-:....:.::....:.  ",
+        "              .......:-====**##*+==::::::=#@%%%%##%%%#+---=-:.....::  ",
+        "             ......:-=====*######%%#*==-=+#@%@@@@@%#%%%###*+:.....::  ",
+        "            .....:::==+*####++=+*%%@%#*++*##%%%%%#=--=##%###+-:..::   ",
+        "           ....::::==+#####+-:::::==#%****##%#####+=:::::-+*#*:::::   ",
+        "         ..:...:.:-=+*###%%%%####%#####*###%%%%#####+==---:-*#=:..:   ",
+        "        ..==-**:::==+*####%%%%%%%%######*##%%%##%##%%%%##+==-*=:::    ",
+        "       ..=#*=-=-::-=+**###%%%%%%%%%####+*###%%##=-=*#%%%%##*+#=::.    ",
+        "       ..##*#=:::-===+###%#%@@@@@%%###*+###%%%##%#:::-+###%#*#+::     ",
+        "       ..#+#=.::-====*##%@@@@@@@@%#**#*##%%%%##%%%###*=-######=:.     ",
+        "       ..:*+.:::-===+##%%%@@%@@%#-=+###*#%@@@%%%%%%%%%%%%%%%##=       ",
+        "       ...+*-:::-==+*##%%@@@%%###=:=-...=##%%%%%%%%%%%%%%%%%%=        ",
+        "       ...++#:.:-==+##%%@%%%####*######*+*+:.*%%@@@%@%%%%%%%#         ",
+        "      .....--::::==+###%@###**#####%%%%%%%%#**##@@@@@@%%%%%%           ",
+        "       .......:::-=+*#%@@%%#===*#####@%%%%%###%%@@@@@@%%%%%#           ",
+        "        ......::::--=#%%@@@%#=:-=+++**#%@@@@%###%%#%@%%%##%%           ",
+        "         .....:::::-+##%@@@####***#@@@%####%%%##%%%%%%%%%#%#           ",
+        "         ........::-+*##%%%####%#####%@@#%==#####%%@%%%%%##            ",
+        "          ........:-=+*###%###%#%@%###%###=:-=#%%#%@%#%%#%             ",
+        "          .........::-=+##%%%%%%##*##%@@@@@@@@@@@@@@@%%+-:             ",
+        "           ..:::....:::-+##%#%###+=-*#%%@@@@@@@@@%####+=               ",
+        "             :::::.....:=+#######+==+##%@@@@@@@@%#*#+==:               ",
+        "             ::--:::...:::=+####*++####%@@@@%@@%#+=-::::               ",
+        "             ::---:::...::=+++++=**####%%%#%##%#=:::::                 ",
+        "            :::---:::::...:-==+=+*###%####****+-:::::                  ",
+        "           .::::---:::---::::::-===+*#*++=---:::::::                   ",
+        "        ....:::--::-:--====:.:.::::::---::::::::::                     ",
+        "      .....::::---:-:--========:.:...:::::::=###                       ",
+        "   ........:::================++=====+++*#####*::...                   ",
+        "..........::::=+***+++*##%%%%%%%@%%%%%%%%%%%%#=...........             ",
+        "............:-:-=+*###****##%@@@@%%%%%%%%@%%%%%*............:          ",
+        ".............=:-=+*###########%%%%%%%%@%@%%%%%*:.................      ",
+        ".............:--=+*########%%%%%%%%%%@@@@@%%%=............................",
+        "..............:-=+*#######%%%%%%%%%@@@@%%%%#-............................",
+        "................:=+*#####%%%%%%%%%%%%%%%%#:..............................",
+        "..................:-*####%%%%%%%%%%%%#+::................................",
+        ".......................::--=====-::......................................",
     ]
+    ascii_lines = [esc(l) for l in ascii_raw]
 
     # ── Info panel ────────────────────────────────────────────────────────────
     info_lines = []
     info_lines.append(("header",    "manuel@ospina"))
-    info_lines.append(("separator", "─" * 42))
-    # About
+    info_lines.append(("separator", "─" * 40))
     for line in ABOUT:
-        info_lines.append(("about", line))
+        info_lines.append(("about", esc(line)))
     info_lines.append(("blank", ""))
-    info_lines.append(("separator", "─" * 42))
-    info_lines.append(("kv",        ("Role",     ROLE)))
-    info_lines.append(("kv",        ("Location", LOCATION)))
-    info_lines.append(("kv",        ("OS",       OS_INFO)))
-    info_lines.append(("kv",        ("IDE",      IDE_INFO)))
-    info_lines.append(("kv",        ("Focus",    FOCUS)))
+    info_lines.append(("separator", "─" * 40))
+    info_lines.append(("kv", ("Role",     esc(ROLE))))
+    info_lines.append(("kv", ("Location", esc(LOCATION))))
+    info_lines.append(("kv", ("OS",       esc(OS_INFO))))
+    info_lines.append(("kv", ("IDE",      esc(IDE_INFO))))
+    info_lines.append(("kv", ("Focus",    esc(FOCUS))))
     info_lines.append(("blank", ""))
     for cat, techs in STACK.items():
-        info_lines.append(("kv", (f"Stack.{cat}", techs)))
+        info_lines.append(("kv", (f"Stack.{cat}", esc(techs))))
     info_lines.append(("blank", ""))
     for label, value in HOBBIES:
-        info_lines.append(("kv", (label, value)))
+        info_lines.append(("kv", (esc(label), esc(value))))
     info_lines.append(("blank", ""))
     info_lines.append(("section",   "Contact"))
-    info_lines.append(("separator", "─" * 42))
+    info_lines.append(("separator", "─" * 40))
     for label, value in CONTACT:
-        info_lines.append(("kv", (label, value)))
+        info_lines.append(("kv", (esc(label), esc(value))))
     info_lines.append(("blank", ""))
     info_lines.append(("section",   "GitHub Stats"))
-    info_lines.append(("separator", "─" * 42))
+    info_lines.append(("separator", "─" * 40))
     info_lines.append(("stat", (f"Repos: {stats['repos']}", f"Stars: {stats['stars']}")))
     info_lines.append(("stat", (f"Commits: {stats['commits']:,}", f"Followers: {stats['followers']}")))
 
-    # ── Dimensiones ───────────────────────────────────────────────────────────
-    ASCII_FONT   = 8.2
-    ASCII_LINE_H = 10.5
+    # ── Dimensiones dinámicas ─────────────────────────────────────────────────
+    ASCII_FONT   = 7.2
+    ASCII_LINE_H = 9.5
     INFO_FONT    = 12.5
-    INFO_LINE_H  = 20
+    INFO_LINE_H  = 20.0
 
-    n_ascii       = len(ascii_lines)
-    ASCII_BLOCK_H = n_ascii * ASCII_LINE_H
+    n_ascii  = len(ascii_lines)
+    ASCII_H  = n_ascii * ASCII_LINE_H
 
-    info_h = 0
+    info_h = 0.0
     for item in info_lines:
-        if item[0] == "blank":       info_h += INFO_LINE_H * 0.55
-        elif item[0] == "header":    info_h += INFO_LINE_H * 1.4
-        elif item[0] == "section":   info_h += INFO_LINE_H * 0.9
-        elif item[0] == "about":     info_h += INFO_LINE_H * 0.95
-        else:                        info_h += INFO_LINE_H
+        k = item[0]
+        if k == "blank":       info_h += INFO_LINE_H * 0.55
+        elif k == "header":    info_h += INFO_LINE_H * 1.4
+        elif k == "section":   info_h += INFO_LINE_H * 0.9
+        elif k == "about":     info_h += INFO_LINE_H * 0.95
+        else:                  info_h += INFO_LINE_H
 
-    PAD    = 28
-    W      = 980
-    H      = int(max(ASCII_BLOCK_H, info_h) + PAD * 3.2)
-    H      = max(H, 540)
+    PAD    = 24
+    # El ASCII es muy ancho (~73 chars × 4.3px ≈ 314px) más padding
+    ASCII_COL_W = 390
+    INFO_X      = ASCII_COL_W + PAD
+    DIVIDER     = ASCII_COL_W + PAD // 2
+    W           = INFO_X + 560
+    H           = int(max(ASCII_H, info_h) + PAD * 3.5)
 
-    INFO_X  = 400
-    DIVIDER = INFO_X - 16
-    MONO    = "JetBrains Mono, Fira Code, Consolas, monospace"
+    MONO        = "JetBrains Mono, Fira Code, Consolas, monospace"
 
     BG          = "#0d1117"
-    BORDER      = "#30363d"
+    BORDER      = "#21262d"
     ACCENT      = "#58a6ff"
     TEXT_DIM    = "#8b949e"
     TEXT_MAIN   = "#c9d1d9"
@@ -167,104 +183,109 @@ def make_svg(stats):
     GREEN       = "#3fb950"
     ORANGE      = "#d29922"
 
-    parts = []
+    p = []
 
-    parts.append(f"""<defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%"   stop-color="#161b22"/>
-    <stop offset="100%" stop-color="#0d1117"/>
-  </linearGradient>
-  <linearGradient id="borderGrad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%"   stop-color="{ACCENT}" stop-opacity="0.8"/>
-    <stop offset="100%" stop-color="{GREEN}"  stop-opacity="0.3"/>
-  </linearGradient>
-  <filter id="glow">
-    <feGaussianBlur stdDeviation="2.5" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-</defs>""")
+    # defs
+    p.append(
+        f'<defs>'
+        f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">'
+        f'<stop offset="0%" stop-color="#161b22"/>'
+        f'<stop offset="100%" stop-color="#0d1117"/>'
+        f'</linearGradient>'
+        f'<linearGradient id="bd" x1="0" y1="0" x2="1" y2="1">'
+        f'<stop offset="0%" stop-color="{ACCENT}" stop-opacity="0.8"/>'
+        f'<stop offset="100%" stop-color="{GREEN}" stop-opacity="0.3"/>'
+        f'</linearGradient>'
+        f'<filter id="glow">'
+        f'<feGaussianBlur stdDeviation="2.5" result="b"/>'
+        f'<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>'
+        f'</filter>'
+        f'</defs>'
+    )
 
-    parts.append(f'<rect width="{W}" height="{H}" rx="14" fill="url(#bg)"/>')
-    parts.append(f'<rect width="{W}" height="{H}" rx="14" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>')
-    parts.append(f'<line x1="{DIVIDER}" y1="{PAD}" x2="{DIVIDER}" y2="{H-PAD}" stroke="{BORDER}" stroke-width="1" opacity="0.5"/>')
+    p.append(f'<rect width="{W}" height="{H}" rx="14" fill="url(#bg)"/>')
+    p.append(f'<rect width="{W}" height="{H}" rx="14" fill="none" stroke="url(#bd)" stroke-width="1.5"/>')
+    p.append(f'<line x1="{DIVIDER}" y1="{PAD}" x2="{DIVIDER}" y2="{H-PAD}" stroke="{BORDER}" stroke-width="1"/>')
 
-    # ── ASCII (izquierda) ──────────────────────────────────────────────────────
-    ascii_y_start = (H - ASCII_BLOCK_H) / 2 + ASCII_LINE_H
-    for i, aline in enumerate(ascii_lines):
-        y   = ascii_y_start + i * ASCII_LINE_H
-        esc = aline.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
-        mid  = n_ascii / 2
+    # ── ASCII (centrado verticalmente) ────────────────────────────────────────
+    ascii_y0 = (H - ASCII_H) / 2.0 + ASCII_LINE_H
+    for i, line in enumerate(ascii_lines):
+        y    = ascii_y0 + i * ASCII_LINE_H
+        mid  = n_ascii / 2.0
         dist = abs(i - mid) / mid
-        if dist < 0.25:
-            fill, alpha = ACCENT, 1.0
-        elif dist < 0.5:
-            fill, alpha = "#79c0ff", 0.85
-        elif dist < 0.75:
-            fill, alpha = TEXT_DIM, 0.65
+        # color degradado: centro brillante, extremos apagados
+        if dist < 0.2:
+            fill, op = ACCENT, 1.0
+        elif dist < 0.45:
+            fill, op = "#79c0ff", 0.85
+        elif dist < 0.70:
+            fill, op = TEXT_DIM, 0.6
         else:
-            fill, alpha = TEXT_DIM, 0.4
-        parts.append(
-            f'<text x="{PAD}" y="{y:.1f}" font-family="{MONO}" font-size="{ASCII_FONT}" '
-            f'fill="{fill}" opacity="{alpha:.2f}" xml:space="preserve">{esc}</text>'
+            fill, op = TEXT_DIM, 0.3
+        p.append(
+            f'<text x="{PAD}" y="{y:.1f}" font-family="{MONO}" '
+            f'font-size="{ASCII_FONT}" fill="{fill}" opacity="{op:.2f}" '
+            f'xml:space="preserve">{line}</text>'
         )
 
-    # ── Info (derecha) ─────────────────────────────────────────────────────────
-    y = PAD + 18.0
+    # ── Info panel ────────────────────────────────────────────────────────────
+    y = float(PAD) + 18.0
     for item in info_lines:
-        kind = item[0]
+        k = item[0]
 
-        if kind == "blank":
+        if k == "blank":
             y += INFO_LINE_H * 0.55
-            continue
 
-        elif kind == "header":
-            parts.append(
+        elif k == "header":
+            p.append(
                 f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="17" '
                 f'font-weight="bold" fill="{TEXT_BRIGHT}" filter="url(#glow)">{item[1]}</text>'
             )
             y += INFO_LINE_H * 1.4
 
-        elif kind == "separator":
-            parts.append(
+        elif k == "separator":
+            p.append(
                 f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{BORDER}" opacity="0.7">{item[1]}</text>'
+                f'fill="{BORDER}">{item[1]}</text>'
             )
             y += INFO_LINE_H
 
-        elif kind == "section":
-            parts.append(
+        elif k == "section":
+            p.append(
                 f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
-                f'fill="{TEXT_DIM}">─ {item[1]}</text>'
+                f'fill="{TEXT_DIM}">&#x2500; {item[1]}</text>'
             )
             y += INFO_LINE_H * 0.9
 
-        elif kind == "about":
-            parts.append(
+        elif k == "about":
+            p.append(
                 f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="11.5" '
                 f'fill="{TEXT_ABOUT}" opacity="0.85" font-style="italic">{item[1]}</text>'
             )
             y += INFO_LINE_H * 0.95
 
-        elif kind == "kv":
+        elif k == "kv":
             label, value = item[1]
-            parts.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" fill="{ACCENT}">'
-                f'{label}:</text>'
+            p.append(
+                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                f'fill="{ACCENT}">{label}:</text>'
             )
-            lw = len(label) * 7.4 + 12
-            parts.append(
-                f'<text x="{INFO_X + lw:.1f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" fill="{TEXT_MAIN}">'
-                f'{value}</text>'
+            lw = len(label) * 7.4 + 14
+            p.append(
+                f'<text x="{INFO_X + lw:.0f}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                f'fill="{TEXT_MAIN}">{value}</text>'
             )
             y += INFO_LINE_H
 
-        elif kind == "stat":
+        elif k == "stat":
             left, right = item[1]
-            parts.append(
-                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" fill="{GREEN}">{left}</text>'
+            p.append(
+                f'<text x="{INFO_X}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                f'fill="{GREEN}">{left}</text>'
             )
-            parts.append(
-                f'<text x="{INFO_X + 250}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" fill="{GREEN}">{right}</text>'
+            p.append(
+                f'<text x="{INFO_X + 240}" y="{y:.1f}" font-family="{MONO}" font-size="{INFO_FONT}" '
+                f'fill="{GREEN}">{right}</text>'
             )
             y += INFO_LINE_H
 
@@ -273,29 +294,34 @@ def make_svg(stats):
     bw = (W - PAD * 2) // len(palette)
     by = H - 12
     for i, c in enumerate(palette):
-        parts.append(
-            f'<rect x="{PAD + i*bw}" y="{by}" width="{bw}" height="4" rx="2" fill="{c}" opacity="0.75"/>'
+        p.append(
+            f'<rect x="{PAD + i*bw}" y="{by}" width="{bw}" height="4" '
+            f'rx="2" fill="{c}" opacity="0.75"/>'
         )
 
-    svg = (
+    return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">\n'
-        + "\n".join(parts)
+        + "\n".join(p)
         + "\n</svg>"
     )
-    return svg
 
 
 if __name__ == "__main__":
     token = os.environ.get("GH_TOKEN", "")
     print("Fetching GitHub stats...")
-    try:
-        stats = fetch_github_stats(USERNAME, token)
-        print(f"Stats: {stats}")
-    except Exception as e:
-        print(f"Could not fetch stats: {e}")
-        stats = {"repos": 0, "stars": 0, "commits": 0, "followers": 0}
+    stats = fetch_github_stats(USERNAME, token)
+    print(f"Stats: {stats}")
 
     svg = make_svg(stats)
+
+    # Validar XML
+    import xml.etree.ElementTree as ET
+    try:
+        ET.fromstring(svg)
+        print("XML valido")
+    except ET.ParseError as e:
+        print(f"XML ERROR: {e}")
+
     with open("profile.svg", "w", encoding="utf-8") as f:
         f.write(svg)
-    print("SVG generado: profile.svg")
+    print(f"Listo: profile.svg ({len(svg):,} bytes)")
