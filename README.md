@@ -1,3 +1,1 @@
-## 🎧 Now Playing
 
-<!-- Spotify-Readme -->
