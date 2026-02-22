@@ -108,11 +108,11 @@
 <text x="420" y="590.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Repos: 10</text>
 <text x="660" y="590.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Stars: 0</text>
 <text x="420" y="610.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Commits: 46</text>
-<text x="660" y="610.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Followers: 4</text>
-<text x="420" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Lines of Code: 24,557  (</text>
-<text x="601" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">+25,660</text>
-<text x="661" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#f85149">  -1,103</text>
-<text x="726" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950"> )</text>
+<text x="660" y="610.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Followers: 5</text>
+<text x="420" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">Lines of Code: 31,455  (</text>
+<text x="601" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950">+31,677</text>
+<text x="661" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#f85149">  -222</text>
+<text x="711" y="630.0" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="12.5" fill="#3fb950"> )</text>
 <rect x="20" y="700" width="156" height="4" rx="2" fill="#58a6ff" opacity="0.75"/>
 <rect x="176" y="700" width="156" height="4" rx="2" fill="#3fb950" opacity="0.75"/>
 <rect x="332" y="700" width="156" height="4" rx="2" fill="#d29922" opacity="0.75"/>
